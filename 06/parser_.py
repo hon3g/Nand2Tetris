@@ -66,20 +66,30 @@ def handle_labels(ls):
 
     # replace @XXX with number
     var_address = 16
+    mem = {}
     for i in range(len(ls)):
         if ls[i].startswith('@'):
+            # if @XXX is already in numeral form, do nothing
+            if ls[i][1:].isdigit():
+                pass
 
             # replace with pre-defined symbols if found
-            if pre_defined_sb.get(ls[i][1:]) is not None:
+            elif pre_defined_sb.get(ls[i][1:]) is not None:
                 ls[i] = '@' + pre_defined_sb[ls[i][1:]]
 
             # replace by (XXX) line number if search failed
             elif line_num.get(ls[i][1:]) is not None:
                 ls[i] = '@' + str(line_num[ls[i][1:]])
 
+            # else must be user defined variable
+            # assign same address for same variable
             else:
-                ls[i] = '@' + str(var_address)
-                var_address += 1
+                if ls[i] not in mem:
+                    mem[ls[i]] = '@' + str(var_address)
+                    ls[i] = '@' + str(var_address)
+                    var_address += 1
+                else:
+                    ls[i] = mem[ls[i]]
 
     # remove (XXX)'s
     ls = list(filter(lambda x: not x.startswith('('), ls))
