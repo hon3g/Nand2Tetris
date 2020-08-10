@@ -1,4 +1,4 @@
-from code import asm_to_bi
+from code_ import asm_to_bi
 from parser_ import (
     read_asm_file_to_code,
     clean_code,
@@ -33,15 +33,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-# import time
-# print('---------------------')
-#
-# start = time.perf_counter()
-# for i in bi_code:
-#     print(i)
-# end = time.perf_counter()
-#
-# print('---------------------')
-#
-# print(end - start)
