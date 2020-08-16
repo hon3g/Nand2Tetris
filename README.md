@@ -1,3 +1,4 @@
+https://www.coursera.org/learn/build-a-computer
 # The Elements of Computing Systems
 ### Part 1: hardware hierarchy
 1. [Boolean Logic](https://github.com/hon3g/the-elements-of-computing-systems/tree/master/01)
